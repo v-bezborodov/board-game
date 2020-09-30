@@ -1,0 +1,61 @@
+<h1 mat-dialog-title class="title">Создание игры</h1>
+<div mat-dialog-content>
+  <form [formGroup]="createGameForm">
+    <mat-form-field appearance="legacy">
+      <mat-label>Название игры</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Шаблон игры</mat-label>
+      <mat-select formControlName="pattern" required>
+        <mat-option *ngFor="let pattern of gamePatterns" [value]="pattern">
+          {{pattern.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="avatar">
+      <div *ngIf="!gameAvatar">
+        <input accept="image/*" #fileUpload type="file" (change)="uploadAvatar($event)" hidden>
+        <button mat-raised-button type="button" class="upload-btn" (click)="fileUpload.click()">
+          Выбрать изображение
+        </button>
+      </div>
+      <div *ngIf="gameAvatar">
+        <div class="avatar-name">
+          <mat-icon class="drop-icon" (click)="dropAvatar()">clear</mat-icon>
+          <span>{{gameAvatar.name}}</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="date-inputs">
+      <mat-form-field appearance="legacy">
+        <mat-label>Дата</mat-label>
+        <input matInput formControlName="date" [min]="minDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <mat-label>Время</mat-label>
+        <input type="time" matInput formControlName="time">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Цена</mat-label>
+      <input matInput formControlName="price" pattern="[0-9]{1,}[\.\s]{0,}[0-9]{0,}" required>
+      <span matSuffix>&#8381;</span>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Описание</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button
+          class="dialog-action-btn submit-btn"
+          color="primary"
+          [disabled]="createGameForm.invalid" (click)="create()">Создать</button>
+  <button mat-flat-button class="dialog-action-btn" (click)="onNoClick()">Отмена</button>
+</div>

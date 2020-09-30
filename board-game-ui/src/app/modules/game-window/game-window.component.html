@@ -1,0 +1,31 @@
+<div class="game-window-container" [style.background-image]="getBackground()">
+  <section class="chip"
+           *ngFor="let member of members; trackBy:identify"
+           [style.background-color]="member.color"
+           [cdkDragFreeDragPosition]="member.position"
+           [cdkDragDisabled]="member.id !== currentUser._id"
+           (cdkDragEnded)="chipMoved($event, member)"
+           cdkDragBoundary=".game-window-container"
+           cdkDrag></section>
+
+  <section class="deck"
+           *ngFor="let deck of decks; trackBy:identify">
+    <section class="card"
+             *ngFor="let card of deck.cards; trackBy:identify"
+             [style.background-image]="card.isOpen ? getSafeUrl(card.url) : getSafeUrl(deck.cardBackImage)"
+             [cdkDragDisabled]="adminId !== currentUser._id"
+             [cdkDragFreeDragPosition]="card.position"
+             (keypress)="press($event, deck, card)"
+             (cdkDragEnded)="cardMoved($event, deck, card)"
+             [tabIndex]="card._id"
+             cdkDragBoundary=".game-window-container"
+             cdkDrag>
+
+    </section>
+  </section>
+</div>
+<div class="members">
+  <span class="member" *ngFor="let user of allMembers" [style.color]="user.color"
+        [style.text-decoration]="user.isAdmin ? 'underline' : ''">{{user.name}}</span>
+</div>
+<button mat-button color="warn" (click)="stopGame()" *ngIf="currentUser._id === adminId">Close Game</button>

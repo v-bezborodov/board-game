@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="dices">
+    <h2 class="title">Наборы кубиков</h2>
+    <mat-list class="dices-list">
+      <mat-list-item class="dices-list-item"
+                     *ngFor="let dice of dices"
+                     (click)="setDiceIntoForm(dice._id)">
+        {{dice.name}}
+        <button mat-icon-button
+                color="warn"
+                class="dices-list-btn"
+                (click)="deleteDice(dice._id)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="dices-form">
+    <p class="sub-title" *ngIf="selectedDice === undefined">Набор кубиков не выбран</p>
+    <form class="form" [formGroup]="diceForm" *ngIf="selectedDice != undefined">
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Название" formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Режим</mat-label>
+        <mat-select formControlName="mode">
+          <mat-option *ngFor="let mode of modes | keyvalue" [value]="mode.value">
+            {{mode.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Количество кубиков" formControlName="count">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Какое значение выбирать</mat-label>
+        <mat-select formControlName="value">
+          <mat-option *ngFor="let diceValue of diceValues | keyvalue" [value]="diceValue.value">
+            {{diceValue.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Количество граней" formControlName="facesNumber">
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="dices-limitations">
+    <h2 class="title">Ограничения ходов</h2>
+    <div *ngIf="resources.length != 0 && selectedDice != undefined">
+      <p class="sub-title">По ресурсам</p>
+      <form class="limitations-items" *ngFor="let resource of resources" [formGroup]="resourceLimitForm" >
+        <span>{{resource.name}}</span>
+        <mat-form-field class="limit-select-field">
+          <mat-select [formControlName]="resource._id + '-symbol'" ngDefaultControl>
+            <mat-option *ngFor="let limit of limits | keyvalue" [value]="limit.value">
+              {{limit.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" class="limit-input-field">
+          <input matInput type="number" [formControlName]="resource._id + '-value'">
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</div>

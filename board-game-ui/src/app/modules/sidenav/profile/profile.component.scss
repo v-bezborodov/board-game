@@ -1,0 +1,87 @@
+@import "~src/style-constants";
+
+.container {
+  padding-right: 0;
+  padding-left: 0;
+
+  .title {
+    font-size: 28px;
+    color: $header-color;
+    border-bottom: 1px solid $header-color;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+
+  .content {
+    width: 40%;
+    min-width: 280px;
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+
+      .form {
+        display: flex;
+        flex-direction: column;
+
+        .avatar-image {
+          width: 160px;
+          height: 160px;
+          background-size: contain;
+          background-position: center;
+          display: flex;
+          justify-content: center;
+
+          img {
+            object-fit: scale-down;
+          }
+        }
+
+        .submit-btn {
+          width: 100%;
+          margin: 25px 0 0 0;
+          background: $header-color;
+        }
+
+        .submit-btn:disabled {
+          background: $disable-btn;
+        }
+
+        .card-action-btn {
+          margin: 0;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: 950px ) {
+
+  .container {
+
+    .content {
+
+      .form-container {
+
+        .form {
+
+          .avatar {
+            width: 90%;
+            margin: 0 auto;
+            padding: 10px 0;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

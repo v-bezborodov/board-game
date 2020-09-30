@@ -1,0 +1,143 @@
+<div class="container">
+  <h1 class="title">Профиль</h1>
+  <div class="content">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Личная информация
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-container">
+          <form class="form" [formGroup]="personalDataForm">
+            <mat-form-field appearance="legacy">
+              <input matInput formControlName="name" placeholder="Имя" required>
+            </mat-form-field>
+            <mat-label>Аватар</mat-label>
+            <div class="avatar-image" *ngIf="!user || !user.avatar" [style.background-image]="defaultImagePath"></div>
+            <div class="avatar-image" *ngIf="user && user.avatar"><img [src]="user.avatar"></div>
+            <input accept="image/*" #fileUpload type="file" (change)="uploadAvatar($event)" hidden>
+            <button mat-raised-button type="button" class="upload-btn" (click)="fileUpload.click()">
+              Выбрать изображение
+            </button>
+            <mat-card-actions class="card-action-btn">
+              <button mat-raised-button
+                      color="primary"
+                      type="submit"
+                      class="submit-btn"
+                      [disabled]="personalDataForm.invalid"
+                      (click)="updatePersonalData()">Сохранить
+              </button>
+            </mat-card-actions>
+          </form>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel *ngIf="user.role === 'GAME ADMIN'" (opened)="gameAdminInfo.focus()">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Описание игропрактика
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-container">
+          <form class="form" [formGroup]="gameAdminForm">
+            <mat-form-field appearance="legacy">
+              <mat-label>Страна</mat-label>
+              <input matInput formControlName="country" placeholder="Страна" required>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <mat-label>Город</mat-label>
+              <input matInput formControlName="city" placeholder="Город" required>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <textarea matInput formControlName="info" placeholder="Описание" rows="5" required #gameAdminInfo>
+              </textarea>
+            </mat-form-field>
+            <mat-card-actions class="card-action-btn">
+              <button mat-raised-button
+                      color="primary"
+                      type="submit"
+                      class="submit-btn"
+                      [disabled]="gameAdminForm.invalid"
+                      (click)="updateGameAdminInfo()">Сохранить
+              </button>
+            </mat-card-actions>
+          </form>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Пароль
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-container">
+          <form class="form" [formGroup]="passwordForm">
+            <mat-form-field appearance="legacy">
+              <input matInput
+                     [type]="previousPasswordHide ? 'password' : 'text'"
+                     placeholder="Текущий пароль"
+                     formControlName="previousPassword" required>
+              <button mat-icon-button matSuffix
+                      (click)="previousPasswordHide = !previousPasswordHide"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="previousPasswordHide">
+                <mat-icon>{{previousPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.controls.previousPassword.hasError('required')">
+                Поле текущий пароль не должно быть пустым
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <input matInput
+                     [type]="newPasswordHide ? 'password' : 'text'"
+                     placeholder="Новый пароль"
+                     formControlName="newPassword" required>
+              <button mat-icon-button matSuffix
+                      (click)="newPasswordHide = !newPasswordHide"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="newPasswordHide">
+                <mat-icon>{{newPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.controls.newPassword.hasError('required')">
+                Поле новый пароль не должно быть пустым
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+              <input matInput
+                     [type]="confirmPasswordHide ? 'password' : 'text'"
+                     placeholder="Повторите новый пароль"
+                     formControlName="confirmPassword" required>
+              <button mat-icon-button matSuffix
+                      (click)="confirmPasswordHide = !confirmPasswordHide"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="confirmPasswordHide">
+                <mat-icon>{{confirmPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.controls.confirmPassword.hasError('required')">
+                Поле повтор нового пароля не должно быть пустым
+              </mat-error>
+              <mat-error *ngIf="passwordForm.controls.confirmPassword.hasError('confirmError')">
+                Пароль не подтвержден!
+              </mat-error>
+            </mat-form-field>
+            <mat-card-actions class="card-action-btn">
+              <button mat-raised-button
+                      color="primary"
+                      type="submit"
+                      class="submit-btn"
+                      [disabled]="passwordForm.invalid"
+                      (click)="updatePassword()">Сохранить
+              </button>
+            </mat-card-actions>
+          </form>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+</div>
+

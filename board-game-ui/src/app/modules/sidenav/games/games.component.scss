@@ -1,0 +1,66 @@
+@import "~src/style-constants";
+
+.container {
+  min-width: 960px;
+  padding-right: 0;
+  padding-left: 0;
+
+  .title {
+    font-size: 28px;
+    color: $header-color;
+    border-bottom: 1px solid $header-color;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+
+  .content {
+    margin: 0 0 30px;
+
+    .sub-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 20px;
+      margin: 0 0 15px 0;
+      font-family: OpenSans, sans-serif;
+    }
+
+    .not-found-msg {
+      text-align: center;
+      background: $background-table-header;
+      padding: 10px;
+      font-family: OpenSans, sans-serif;
+      font-size: 15px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 900px;
+      border-radius: 15px;
+      overflow: hidden;
+      font-family: OpenSans, sans-serif;
+
+      tr.mat-header-row {
+        background: $background-table-header;
+        font-family: OpenSans-Bold, sans-serif;
+        text-transform: uppercase;
+      }
+
+      .name-column {
+        width: 200px;
+      }
+
+      .creation-date-column {
+        width: 200px;
+        text-align: right;
+      }
+
+      .action-column {
+        width: 250px;
+        text-align: right;
+      }
+
+    }
+
+  }
+
+}

@@ -1,0 +1,142 @@
+@import "~src/style-constants";
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  overflow: auto;
+
+  .toolbar-container {
+    position: fixed;
+    z-index: 2;
+    background: white;
+    padding: 0 10px 0 0;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+
+    .logo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+  }
+
+  .sidenav-container {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: $background-light-grey;
+    padding-top: 64px;
+
+    .side-bar {
+      width: 240px;
+      background: $sidenav-background;
+      padding-top: 64px;
+      border: none;
+
+      .current-user {
+        width: 100%;
+        padding: 10px 0 0 26px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        box-sizing: border-box;
+
+        .current-user-avatar {
+          width: 50px;
+          height: 50px;
+          margin-right: 10px;
+          border-radius: 50px;
+          background-position: center;
+          background-size: cover;
+
+        }
+
+        .current-user-name {
+          font-size: 20px;
+          color: white;
+          font-family: OpenSans, sans-serif;
+        }
+      }
+
+      .list-btn {
+        color: white;
+        font-family: OpenSans-Light, sans-serif;
+
+        .list-btn-icon {
+          padding: 0 10px;
+        }
+
+      }
+      .sub-list {
+        margin-left: 15px;
+        padding-top: 0;
+      }
+
+    }
+
+    #exit-btn {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .sidenav-content {
+      padding: 30px;
+    }
+  }
+
+}
+
+@media (max-width: 599px) {
+
+  .container {
+
+    .toolbar-container {
+      height: 64px;
+    }
+
+  }
+
+}
+
+@media (max-width: 425px) {
+
+  .container {
+
+    .sidenav-content {
+      padding: 15px;
+    }
+
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  .container {
+
+    .toolbar-container {
+
+      .logo {
+
+        img {
+          width: 80%;
+        }
+      }
+
+    }
+
+    .sidenav-container {
+
+      .side-bar {
+        width: 100%;
+      }
+
+    }
+
+  }
+
+}

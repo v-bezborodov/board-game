@@ -1,0 +1,47 @@
+@import "~src/style-constants";
+
+.requests-container {
+
+  .title {
+    font-size: 28px;
+    color: $header-color;
+    border-bottom: 1px solid $header-color;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+
+  .not-found-msg {
+    text-align: center;
+    background: $background-table-header;
+    padding: 10px;
+    font-family: OpenSans, sans-serif;
+    font-size: 15px;
+  }
+
+  .content {
+    margin: 0 0 30px;
+
+
+    .request {
+      margin: 20px 20px 0 20px;
+      padding: 10px 15px;
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 15px;
+
+      .actions {
+        display: flex;
+        flex-direction: row;
+
+        button {
+          &:first-child {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="decks">
+    <h2 class="title">Колода</h2>
+    <mat-list class="decks-list">
+      <mat-list-item class="decks-list-item"
+                     *ngFor="let deck of decks"
+                     (click)="setDeckIntoForm(deck._id)">
+        {{deck.name}}
+        <button mat-icon-button
+                color="warn"
+                class="decks-list-btn"
+                (click)="deleteDeck(deck._id)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="decks-form">
+    <p class="subtitle" *ngIf="selectedDeck === undefined">Колода не выбрана</p>
+    <form class="form" [formGroup]="diceForm" *ngIf="selectedDeck != undefined">
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Название" formControlName="name">
+      </mat-form-field>
+      <mat-checkbox formControlName="isRemoveCardsFromDeck">
+        Убирать карты из колоды
+      </mat-checkbox>
+      <mat-checkbox formControlName="isShowCardBack">
+        Показать рубашкой вверх
+      </mat-checkbox>
+      <label class="upload-file-label">Изображение рубашки</label>
+      <input accept="image/*"
+             #backCardDeck
+             type="file" (change)="uploadBackCard($event)" hidden>
+      <button *ngIf="!selectedDeck.cardBackImage" type="button" class="upload-btn" (click)="backCardDeck.click()">
+        Загрузить изображение
+      </button>
+      <img *ngIf="selectedDeck.cardBackImage" [src]="selectedDeck.cardBackImage"/>
+      <label class="upload-file-label">Карты</label>
+      <div class="upload-list">
+        <div class="uploaded-file" *ngFor="let card of selectedDeck.cards">
+          <img *ngIf="!card.isVideoCard" [src]="card.url"  (click)="setPropertiesIntoForm(card)"/>
+          <iframe *ngIf="card.isVideoCard"
+                  [src]="getTrustUrl(card.url)"
+                  allowfullscreen>
+          </iframe>
+          <div *ngIf="card.isVideoCard" (click)="setPropertiesIntoForm(card)" class="action-window"></div>
+        </div>
+        <input accept="image/*" #cardUpload type="file" (change)="uploadCardImage($event)" hidden>
+        <button type="button" class="upload-btn" (click)="cardUpload.click()">
+          Загрузить изображение
+        </button>
+        <button type="button" class="upload-btn" (click)="uploadVideo()">
+          Загрузить видео
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="card-properties">
+    <h2 class="title">Свойство карточки</h2>
+    <form [formGroup]="propertiesForm" *ngIf="selectedCard != undefined">
+      <mat-form-field class="card-textarea">
+        <mat-label>Описание</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <div *ngIf="resources.length != 0">
+        <p class="subtitle">Изменение ресурсов</p>
+        <div *ngFor="let resource of resources" class="properties-list">
+          <span>{{resource.name}}</span>
+          <mat-form-field appearance="legacy" class="limit-input-field">
+            <input matInput type="number" [formControlName]="resource._id + '-mutation-value'" ngDefaultControl>
+          </mat-form-field>
+          <mat-form-field class="limit-select-field">
+            <mat-select [formControlName]="resource._id + '-mutation-symbol'">
+              <mat-option *ngFor="let symbol of changesSymbol | keyvalue" [value]="symbol.value">
+                {{symbol.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf="resources.length != 0">
+        <p class="subtitle">Регулярное изменение ресурсов</p>
+        <div *ngFor="let resource of resources" class="properties-list">
+          <span>{{resource.name}}</span>
+          <mat-form-field appearance="legacy" class="limit-input-field">
+            <input matInput type="number" [formControlName]="resource._id + '-regular-mutation-value'">
+          </mat-form-field>
+          <mat-form-field class="limit-select-field">
+            <mat-select [formControlName]="resource._id + '-regular-mutation-symbol'">
+              <mat-option *ngFor="let symbol of changesSymbol | keyvalue" [value]="symbol.value">
+                {{symbol.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

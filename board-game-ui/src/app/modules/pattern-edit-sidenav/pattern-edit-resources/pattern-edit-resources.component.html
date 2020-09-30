@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="resources">
+    <h2 class="title">Ресурсы</h2>
+    <mat-list class="resource-list">
+      <mat-list-item class="resource-list-item"
+                     *ngFor="let resource of resources"
+                     (click)="setResourceIntoForm(resource._id)">
+        {{resource.name}}
+        <button mat-icon-button
+                color="warn"
+                class="resource-list-btn"
+                (click)="deleteResource(resource._id)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="resource-form">
+    <p class="sub-title" *ngIf="selectedResource === undefined">Ресурс не выбран</p>
+    <form class="form" [formGroup]="resourceForm" *ngIf="selectedResource != undefined">
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Название" formControlName="name" required>
+      </mat-form-field>
+
+      <label class="upload-file-label">Иконка</label>
+      <input accept="image/*" #fileUpload type="file" (change)="uploadFile($event)" hidden>
+      <button *ngIf="!selectedResource.avatarUrl" type="button" class="upload-btn" (click)="fileUpload.click()">
+        Загрузить изображение
+      </button>
+      <img *ngIf="selectedResource.avatarUrl" [src]="this.selectedResource.avatarUrl"/>
+
+      <mat-form-field appearance="legacy">
+        <input matInput type="number" placeholder="Начальное значение" formControlName="value" required>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input matInput type="number" placeholder="Максимальное значение" formControlName="maxValue">
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input matInput type="number" placeholder="Минимальное значение" formControlName="minValue">
+      </mat-form-field>
+    </form>
+  </div>
+</div>

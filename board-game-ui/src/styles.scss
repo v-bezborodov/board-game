@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: initial !important;
+}
+
+#zmmtg-root {
+  display: none;
+  position: fixed !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  width: 300px !important;
+  height: 200px !important;
+}

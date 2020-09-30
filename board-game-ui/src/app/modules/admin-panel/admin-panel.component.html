@@ -1,0 +1,47 @@
+<div class="container">
+  <mat-toolbar class="toolbar-container">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="logo">
+        <img src="assets/images/logo.png"  alt="logo">
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-drawer-container class="sidenav-container" autosize>
+    <mat-drawer #drawer class="side-bar" mode="side" opened>
+      <div class="current-user">
+        <div class="current-user-image">
+          <img src="../../../assets/images/avatar-default.png" alt="avatar">
+        </div>
+        <span class="current-user-name">
+          {{currentUser.name}}
+        </span>
+      </div>
+      <mat-action-list>
+        <button mat-list-item class="list-btn" routerLink="/admin/users">
+          <mat-icon class="list-btn-icon">people</mat-icon>
+          Пользователи
+        </button>
+        <button mat-list-item class="list-btn" routerLink="/admin/games">
+          <mat-icon class="list-btn-icon">casino</mat-icon>
+          Игры
+        </button>
+        <button mat-list-item class="list-btn" routerLink="/admin/patterns">
+          <mat-icon class="list-btn-icon">layers</mat-icon>
+          Шаблоны игр
+        </button>
+        <button mat-list-item class="list-btn" id="action-btns" (click)="signout()">
+          <mat-icon class="list-btn-icon">exit_to_app</mat-icon>
+          Выйти
+        </button>
+      </mat-action-list>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-container>
+</div>

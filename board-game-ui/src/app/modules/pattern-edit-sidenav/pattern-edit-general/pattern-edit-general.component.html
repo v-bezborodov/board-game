@@ -1,0 +1,50 @@
+<div class="container">
+  <h1 class="title">Редактирование шаблона игры</h1>
+  <form class="form" [formGroup]="generalForm">
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Название" formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Описание" formControlName="description">
+    </mat-form-field>
+    <label class="upload-file-label">Изображение игрового поля</label>
+    <input accept="image/*"
+           #fileUpload
+           type="file"
+           (change)="uploadFile($event)"hidden>
+    <button *ngIf="!gamePattern.avatar" type="button" class="upload-btn" (click)="fileUpload.click()">
+      Загрузить изображение
+    </button>
+    <img *ngIf="gamePattern.avatar" [src]="this.gamePattern.avatar"/>
+    <mat-checkbox formControlName="isUseLevels">
+      Использовать уровни
+    </mat-checkbox>
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Количество фишек у игрока"
+             formControlName="chipsCount">
+    </mat-form-field>
+    <p>Размер фишек в пикселях</p>
+    <div class="row-field">
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Ширина в пикселях"
+               formControlName="chipWidth">
+        <span matSuffix>px</span>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Высота в пикселях"
+               formControlName="chipHeight">
+        <span matSuffix>px</span>
+      </mat-form-field>
+    </div>
+    <mat-checkbox formControlName="isUserDealCards">
+      Разрешить выдавать колоды игроку
+    </mat-checkbox>
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Максимальное количество выдаваемых карт"
+             formControlName="maxCardCount">
+    </mat-form-field>
+    <mat-checkbox formControlName="isDailyMove">
+      Ход раз в день
+    </mat-checkbox>
+  </form>
+</div>

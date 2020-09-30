@@ -1,0 +1,8 @@
+<div class="game-admin-container" *ngIf="user">
+  <span class="title">{{'Игропрактик: ' + user.name}}</span>
+  <div class="avatar" *ngIf="user.avatar" [style.background-image]="getSafeUrl(user.avatar)">
+  </div>
+  <div class="info">
+    <span *ngFor="let item of user.gameAdminInfo">{{item}}</span>
+  </div>
+</div>

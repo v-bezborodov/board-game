@@ -1,0 +1,29 @@
+@import "~src/style-constants";
+
+.container {
+  padding-right: 0;
+  padding-left: 0;
+
+  .title {
+    font-size: 28px;
+    color: $header-color;
+    border-bottom: 1px solid $header-color;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+
+  .videos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    iframe {
+      margin: 15px;
+      width: 30%;
+      border: none;
+    }
+
+  }
+
+}

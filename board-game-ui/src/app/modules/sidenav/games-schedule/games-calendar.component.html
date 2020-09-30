@@ -1,0 +1,49 @@
+<div class="container">
+  <h1 class="title">Календарь событий</h1>
+
+  <div class="event-content">
+    <div class="calendar">
+      <mat-calendar [(selected)]="selectedDate"
+                    [dateClass]="dateClass()"
+                    (selectedChange)="dateChanging($event)">
+      </mat-calendar>
+    </div>
+    <div class="event-list">
+      <div class="table">
+        <div class="table-row header">
+          <div class="table-column date-column">
+            Время
+          </div>
+          <div class="table-column game-name-column">
+            Название игры
+          </div>
+          <div class="table-column practitioner-column">
+            Игропрактик
+          </div>
+        </div>
+
+        <div *ngFor="let date of tableDataSource">
+          <div class="table-row date-row">
+            {{date.date}}
+          </div>
+          <div class="table-row" *ngFor="let game of date.games">
+            <div class="table-column date-column">
+              {{game.date | date: 'HH:mm'}}
+            </div>
+            <div class="table-column game-name-column clickable"
+                 (click)="openPlannedGameView(game._id)">
+              {{game.name}}
+            </div>
+            <div class="table-column practitioner-column clickable"
+                 (click)="openGameAdminView(game.userId)">
+              {{game.adminName}}
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

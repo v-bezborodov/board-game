@@ -1,0 +1,27 @@
+<h1 mat-dialog-title class="title">Создание шаблона игры</h1>
+<div mat-dialog-content>
+  <form [formGroup]="createGamePatternForm">
+    <mat-form-field appearance="legacy">
+      <mat-label>Название</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Описание</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Режим</mat-label>
+      <mat-select formControlName="mode">
+        <mat-option *ngFor="let mode of defaultMode" [value]="mode">
+          {{mode.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button
+          class="dialog-action-btn submit-btn"
+          [disabled]="createGamePatternForm.invalid" (click)="create()">Создать</button>
+  <button mat-flat-button class="dialog-action-btn" (click)="onNoClick()">Отмена</button>
+</div>

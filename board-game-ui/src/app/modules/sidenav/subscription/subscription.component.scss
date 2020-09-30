@@ -1,0 +1,31 @@
+@import "~src/style-constants";
+
+.container {
+  min-width: 240px;
+  padding-right: 0;
+  padding-left: 0;
+
+  .title {
+    font-size: 28px;
+    color: $header-color;
+    border-bottom: 1px solid $header-color;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+
+  .sub-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    font-family: OpenSans, sans-serif;
+  }
+
+  span {
+    text-transform: uppercase;
+    color: #1b9490;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+
+
+}

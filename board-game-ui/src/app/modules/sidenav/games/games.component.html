@@ -1,0 +1,124 @@
+<div class="container">
+  <h1 class="title">Игры</h1>
+  <div class="content" *ngIf="currentUser.role == 'GAME ADMIN'">
+    <div class="sub-title">
+      <mat-icon>chevron_right</mat-icon>
+      Список ваших игр
+    </div>
+    <div class="not-found-msg" *ngIf="dataSource.data.length === 0">
+      У вас нет ни одной игры.
+    </div>
+    <table mat-table *ngIf="dataSource.data.length !== 0" [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Название</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="patternName">
+        <th mat-header-cell *matHeaderCellDef> Имя шаблона</th>
+        <td mat-cell *matCellDef="let element"> {{element.patternName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="membersCount">
+        <th mat-header-cell *matHeaderCellDef> Количество участников</th>
+        <td mat-cell *matCellDef="let element"> {{element.membersCount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="startGame(element)">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteGame(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div class="content">
+    <div class="sub-title">
+      <mat-icon>chevron_right</mat-icon>
+      Список игры с вашим участием
+    </div>
+    <div class="not-found-msg" *ngIf="!dataSourceMember.data.length">
+      Вы еще не учавствовали в играх как игрок.
+    </div>
+    <table mat-table *ngIf="dataSourceMember.data.length !== 0" [dataSource]="dataSourceMember" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Название</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="patternName">
+        <th mat-header-cell *matHeaderCellDef> Имя шаблона</th>
+        <td mat-cell *matCellDef="let element"> {{element.patternName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="adminName">
+        <th mat-header-cell *matHeaderCellDef> Игропрактик</th>
+        <td mat-cell *matCellDef="let element" style="cursor: pointer" (click)="openGameAdminView(element.userId)"> {{element.adminName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          {{element.status !== 'ACTIVE' && element.hasRequest ? 'Заявка отправлена' : ''}}
+          {{element.status !== 'ACTIVE' && element.isMember ? 'Заявка одобрена' : ''}}
+          <button *ngIf="element.status === 'ACTIVE'" mat-icon-button color="primary" (click)="joinGame(element)">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsMember"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsMember;"></tr>
+    </table>
+  </div>
+
+  <div class="content">
+    <div class="sub-title">
+      <mat-icon>chevron_right</mat-icon>
+      Доступные игры
+    </div>
+    <div class="not-found-msg" *ngIf="!dataSourceAll.data.length">
+      На данный момент нет доступных игр.
+    </div>
+    <table mat-table *ngIf="dataSourceAll.data.length !== 0" [dataSource]="dataSourceAll" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Название</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="patternName">
+        <th mat-header-cell *matHeaderCellDef> Имя шаблона</th>
+        <td mat-cell *matCellDef="let element"> {{element.patternName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="adminName">
+        <th mat-header-cell *matHeaderCellDef> Игропрактик</th>
+        <td mat-cell *matCellDef="let element" style="cursor: pointer" (click)="openGameAdminView(element.userId)"> {{element.adminName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="accent" (click)="addRequest(element)">
+            Оставить заявку
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsAll"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsAll;"></tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+@import "~src/style-constants";
+
+.title {
+  font-size: 17px;
+  color: $header-color;
+  border-bottom: 1px solid $header-color;
+  font-family: OpenSans-Bold, sans-serif;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+
+.dialog-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.dialog-action-btn {
+  text-transform: uppercase;
+  margin: 0 5px;
+}
+
+.submit-btn {
+  background: $header-color;
+}

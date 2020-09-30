@@ -1,0 +1,17 @@
+<div class="requests-container">
+  <h1 class="title">Заявки на игры</h1>
+
+  <div class="not-found-msg" *ngIf="!requests.length">
+    На данный момент нет заявок.
+  </div>
+
+  <div class="content" *ngIf="requests.length">
+    <div class="request" *ngFor="let request of requests">
+      <span>{{getRequestLabel(request)}}</span>
+      <div class="actions">
+        <button mat-button color="primary" (click)="acceptRequest(request)">Accept</button>
+        <button mat-button color="warn" (click)="declineRequest(request)">Decline</button>
+      </div>
+    </div>
+  </div>
+</div>

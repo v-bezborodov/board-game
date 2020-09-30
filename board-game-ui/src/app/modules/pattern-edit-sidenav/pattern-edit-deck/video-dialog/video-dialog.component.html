@@ -1,0 +1,10 @@
+<h1 mat-dialog-title class="title">Загрузить видео</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="videoUrl" placeholder="URL видео">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="action-btn">
+  <button mat-button [mat-dialog-close]="videoUrl" cdkFocusInitial>Загрузить</button>
+  <button mat-button (click)="onNoClick()">Отмена</button>
+</div>

@@ -1,0 +1,134 @@
+@import "~src/style-constants";
+
+.container {
+  min-width: 960px;
+  padding-right: 0;
+  padding-left: 0;
+
+  .title {
+    font-size: 28px;
+    color: $header-color;
+    border-bottom: 1px solid $header-color;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+
+  .event-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .calendar {
+      width: 25%;
+
+      mat-calendar {
+        width: 90%;
+      }
+    }
+
+    .event-list {
+      width: 75%;
+
+      .event-list-table {
+        width: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+        font-family: OpenSans, sans-serif;
+
+        tr.mat-header-row {
+          background: $background-table-header;
+          font-family: OpenSans-Bold, sans-serif;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+}
+
+.event-date {
+  background: $calendar-event-date;
+  border-radius: 100%;
+
+  div {
+    color: whitesmoke;
+  }
+
+}
+
+.mat-calendar-controls {
+  margin: 0 calc(33% / 7 - 16px) 5% !important;
+}
+
+.mat-calendar-header {
+  padding: 0 8px !important;
+}
+
+.table {
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  font-family: OpenSans, sans-serif;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .table-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 50px;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background: white;
+  }
+
+  .table-row.header {
+    font-family: OpenSans-Bold, sans-serif;
+    font-size: 12px;
+    color: $table-header-color;
+    background: $background-table-header;
+    text-transform: uppercase;
+  }
+
+  .table-row.date-row {
+    justify-content: center;
+    font-family: OpenSans-Bold, sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: $table-header-color;
+    background: $background-table-date-row;
+  }
+
+  .table-column {
+    padding-left: 24px;
+  }
+
+  .table-column.date-column {
+    width: 20%;
+    display: flex;
+    align-items: center;
+  }
+
+  .table-column.game-name-column {
+    width: 50%;
+  }
+
+  .table-column.practitioner-column {
+    width: 30%;
+  }
+
+
+  .table-column.practitioner-column {
+    width: 30%;
+  }
+
+  .clickable:hover {
+    font-weight: bold;
+    color: $font-hover;
+    text-decoration: underline;
+  }
+
+
+}
+

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title class="title">Подтверждение</h1>
+<div mat-dialog-content>
+  <p>Вы точно хотите удалить шаблон игры? Это действие невозможно отменить</p>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button
+          class="dialog-action-btn"
+          color="warn" (click)="delete()">Удалить</button>
+  <button mat-flat-button class="dialog-action-btn" (click)="onNoClick()">Отмена</button>
+</div>

@@ -1,0 +1,77 @@
+<div class="container">
+  <mat-toolbar class="toolbar-container">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="logo">
+        <img src="assets/images/logo.png"  alt="logo">
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-drawer-container class="sidenav-container" autosize>
+    <mat-drawer #drawer class="side-bar" mode="side" opened>
+      <mat-action-list>
+        <button mat-list-item class="list-btn" routerLink="/pattern/general">
+          <mat-icon class="list-btn-icon">widgets</mat-icon>
+          Общее
+        </button>
+        <button mat-list-item
+                class="list-btn"
+                (click)="dicesSubListAction()">
+          <mat-icon class="list-btn-icon">casino</mat-icon>
+          Кубики
+        </button>
+        <mat-action-list class="sub-list" *ngIf="dicesSubList">
+          <button mat-list-item class="list-btn" (click)="addDice()">
+            <mat-icon class="list-btn-icon">add_box</mat-icon>
+            Добавить новый набор кубиков
+          </button>
+        </mat-action-list>
+        <button mat-list-item
+                class="list-btn"
+                (click)="resourcesSubListAction()">
+          <mat-icon class="list-btn-icon">insert_chart_outlined</mat-icon>
+          Ресурсы
+        </button>
+        <mat-action-list class="sub-list" *ngIf="resourcesSubList">
+          <button mat-list-item class="list-btn" (click)="addResource()">
+            <mat-icon class="list-btn-icon">add_box</mat-icon>
+            Добавить новый ресурс
+          </button>
+        </mat-action-list>
+        <button mat-list-item
+                class="list-btn"
+                (click)="decksSubListAction()">
+          <mat-icon class="list-btn-icon">dynamic_feed</mat-icon>
+          Колоды
+        </button>
+      </mat-action-list>
+      <mat-action-list class="sub-list" *ngIf="deckSubList">
+        <button mat-list-item class="list-btn" (click)="addDeck()">
+          <mat-icon class="list-btn-icon">add_box</mat-icon>
+          Добавить новую колоду
+        </button>
+      </mat-action-list>
+      <mat-action-list id="action-btns">
+        <button mat-list-item class="list-btn" (click)="save()">
+          <mat-icon class="list-btn-icon">save</mat-icon>
+          Сохранить
+        </button>
+        <button mat-list-item class="list-btn" (click)="publish()">
+          <mat-icon class="list-btn-icon">share</mat-icon>
+          Опубликовать
+        </button>
+        <button mat-list-item class="list-btn" (click)="exit()">
+          <mat-icon class="list-btn-icon">exit_to_app</mat-icon>
+          Выйти
+        </button>
+      </mat-action-list>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-container>
+</div>

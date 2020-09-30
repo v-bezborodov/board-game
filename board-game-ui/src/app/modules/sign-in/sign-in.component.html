@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="image-content"></div>
+  <div class="content">
+    <div class="content-card">
+      <div class="logo">
+        <img src="assets/images/logo.png"  alt="logo">
+      </div>
+
+      <h2 class="title">Авторизация</h2>
+      <form class="form" [formGroup]="singInForm">
+        <mat-form-field appearance="legacy">
+          <mat-label>Введите email</mat-label>
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="singInForm.controls.email.hasError('required')">
+            Поле email не должно быть пустым
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <mat-label>Введите пароль</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Пароль" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="singInForm.controls.password.hasError('required')">
+            Пароль не должен быть пустым
+          </mat-error>
+        </mat-form-field>
+        <button mat-button class="submit-btn" type="submit" [disabled]="singInForm.invalid" (click)="regularSignIn()">Вход</button>
+        <button mat-button class="submit-btn" type="submit"  (click)="signInWithFB()">Facebook</button>
+        <button mat-button class="submit-btn" type="submit"  (click)="regularSignIn()">Vkontakte</button>
+      </form>
+      <div class="redirect-btn">
+        <a class="link" routerLink="/signup">Создать аккаунт!</a>
+      </div>
+    </div>
+  </div>
+</div>

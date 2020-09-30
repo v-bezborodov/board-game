@@ -1,0 +1,53 @@
+<div class="conversations-container">
+  <div class="header">
+    <h1 class="conversations-title">Сообщения</h1>
+    <button mat-icon-button
+            (click)="openCreateConversationDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-list class="conversation-list">
+    <mat-list-item class="conversation"
+                   (click)="openConversation(conversation)"
+                   *ngFor="let conversation of conversations">
+      <div mat-list-icon [style.background-image]="conversation.image ? getSafeUrl(conversation.image) : 'url(assets/images/avatar-default.png)'" ></div>
+      <div mat-line class="conversation-header">
+        <div class="conversation-header-name">
+          {{conversation.name}}
+        </div>
+        <div class="conversation-header-date">
+          {{conversation.lastMessageDate | date: 'dd/MMM/yyyy'}}
+        </div>
+      </div>
+      <div mat-line class="conversations-message">
+        {{conversation.lastMessage}}
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <div class="chat" *ngIf="messages">
+    <div class="messages-screen" #messagesScroll [scrollTop]="messagesScroll.scrollHeight">
+      <div class="message"
+           *ngFor="let message of messages"
+           [class]="message.authorId === currentUserId ? 'right' : 'left'">
+        <div class="message-avatar" [style.background-image]="message.authorImage ? getSafeUrl(message.authorImage) : 'url(assets/images/avatar-default.png)'">
+        </div>
+        <div class="message-content">
+          <div class="message-owner">{{message.authorName}}</div>
+          <div class="message-text">{{message.text}}</div>
+          <div class="message-date">{{message.date | date: 'dd/MMM/yyyy HH:mm'}}</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="create-message-content" [formGroup]="messageFormGroup">
+      <mat-form-field>
+        <textarea matInput formControlName="message"></textarea>
+      </mat-form-field>
+      <mat-icon class="send-message-btn"
+                (click)="sendMessage()">send</mat-icon>
+    </div>
+
+  </div>
+</div>

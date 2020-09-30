@@ -1,0 +1,25 @@
+<h1 mat-dialog-title class="title">Копирование шаблона игры</h1>
+<div mat-dialog-content>
+  <form [formGroup]="copyGamePatternForm">
+    <mat-form-field appearance="legacy">
+      <mat-label>Исходный шаблон игры</mat-label>
+      <mat-select formControlName="pattern">
+        <mat-option *ngFor="let pattern of gamePatterns" [value]="pattern">
+          {{pattern.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Название копии</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button
+          class="dialog-action-btn submit-btn"
+          color="primary"
+          [disabled]="copyGamePatternForm.invalid" (click)="copy()">Создать</button>
+  <button mat-flat-button class="dialog-action-btn" (click)="onNoClick()">Отмена</button>
+</div>

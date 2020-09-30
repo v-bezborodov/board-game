@@ -1,0 +1,18 @@
+<div class="header">
+  <p class="title">Выберите пользователя, чтобы начать c ним диалог</p>
+  <button mat-icon-button
+          (click)="close()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+<mat-list>
+  <mat-list-item class="user-list"
+                 (click)="chooseUser(user._id)"
+                 *ngFor="let user of users">
+    <div mat-list-icon
+         class="user-avatar"
+         [style.background-image]="getSafeUrl(user.avatar)"></div>
+    <div mat-line>{{user.name}}</div>
+  </mat-list-item>
+</mat-list>
+

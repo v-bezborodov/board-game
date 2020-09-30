@@ -1,0 +1,18 @@
+@import "~src/style-constants";
+
+.title {
+  font-size: 17px;
+  color: $header-color;
+  border-bottom: 1px solid $header-color;
+  font-family: OpenSans-Bold, sans-serif;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.dialog-action-btn {
+  text-transform: uppercase;
+
+}

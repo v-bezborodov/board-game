@@ -1,0 +1,50 @@
+@import "~src/style-constants";
+
+.title {
+  font-size: 17px;
+  color: $header-color;
+  border-bottom: 1px solid $header-color;
+  font-family: OpenSans-Bold, sans-serif;
+}
+
+.date-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .mat-form-field {
+    width: 49%;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.dialog-action-btn {
+  text-transform: uppercase;
+  margin: 0 5px;
+}
+
+.submit-btn {
+  background: $header-color;
+}
+
+.avatar {
+  margin: 10px 0;
+
+  .avatar-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.drop-icon {
+  cursor: pointer;
+}

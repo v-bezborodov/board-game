@@ -1,0 +1,35 @@
+<div class="practitioner-profile-container" *ngIf="user">
+  <h1 class="title">Игропрактики</h1>
+  <div class="practitioner-name">
+    {{user.name}}
+  </div>
+  <div class="practitioner-location">
+    {{user.country}} {{user.city}}
+  </div>
+  <div class="practitioner-profile-content">
+    <div class="avatar" *ngIf="user.avatar" [style.background-image]="getSafeUrl(user.avatar)"></div>
+    <div class="info">
+      <p>
+        <b>Проводит игры: </b>
+        <span class="clickable"
+              *ngFor="let pattern of user.patterns">
+          {{pattern.name}}
+        </span>
+      </p>
+      <p>
+        <b>Ближайшая дата игры: </b>
+        <span>{{user.nearestGame.date | date: 'yyyy-MM-dd'}} </span>
+      </p>
+      <p>
+        <b>Страница ближайшей игры: </b>
+        <span class="clickable"
+              (click)="openGameProfile(user.nearestGame._id)">
+          {{user.nearestGame.name}}
+        </span>
+      </p>
+
+      <div class="description">{{user.gameAdminInfo}}</div>
+    </div>
+  </div>
+</div>
+

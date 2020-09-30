@@ -1,0 +1,23 @@
+<div class="game-profile-container" *ngIf="game">
+  <h1 class="title">{{game.name}}</h1>
+  <div class="game-profile-content">
+    <div class="avatar" [style.background-image]="getSafeUrl(game.avatar)"></div>
+    <div class="info">
+      <p (click)="openUserProfile(game.userId)">
+        <b>Игропрактик: </b>
+        <span class="clickable">{{game.adminName}}</span>
+      </p>
+      <p>
+        <b>По игре: </b>
+        <span class="clickable">{{game.patternName}}</span>
+      </p>
+      <p>
+        <b>Дата: </b>{{game.date | date: 'yyyy-MM-dd HH:mm'}}
+      </p>
+      <p>
+        <b>Цена: </b>{{game.price }} &#8381;
+      </p>
+      <div class="game-description">{{game.description}}</div>
+    </div>
+  </div>
+</div>

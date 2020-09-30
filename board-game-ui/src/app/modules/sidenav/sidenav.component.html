@@ -1,0 +1,93 @@
+<div class="container">
+  <mat-toolbar class="toolbar-container">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="logo">
+        <img src="assets/images/logo.png"  alt="logo">
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-drawer-container class="sidenav-container" autosize>
+    <mat-drawer #drawer class="side-bar" mode="side" opened>
+      <div class="current-user">
+        <div class="current-user-avatar"
+             [style.background-image]="currentUser.avatar ? getSafeUrl(currentUser.avatar) : '../../../assets/images/avatar-default.png'">
+        </div>
+        <span class="current-user-name">
+          {{currentUser.name}}
+        </span>
+      </div>
+      <mat-action-list>
+        <button mat-list-item class="list-btn" (click)="gameSubListAction()">
+          <mat-icon class="list-btn-icon">casino</mat-icon>
+          Игры
+        </button>
+        <mat-action-list class="sub-list" *ngIf="gameSubList">
+          <button mat-list-item class="list-btn" routerLink="/board-games/calendar">
+            <mat-icon class="list-btn-icon">calendar_today</mat-icon>
+            Календарь
+          </button>
+          <button mat-list-item class="list-btn" routerLink="/board-games/games">
+            <mat-icon class="list-btn-icon">list</mat-icon>
+            Посмотреть все игры
+          </button>
+          <button mat-list-item class="list-btn"  *ngIf="currentUser.role === 'GAME ADMIN'" routerLink="/board-games/requests">
+            <mat-icon class="list-btn-icon">assignment</mat-icon>
+            Заявки
+          </button>
+          <button mat-list-item class="list-btn"  *ngIf="currentUser.role === 'GAME ADMIN'" (click)="addGame()">
+            <mat-icon class="list-btn-icon">add_box</mat-icon>
+            Добавить игры
+          </button>
+        </mat-action-list>
+        <button mat-list-item class="list-btn" *ngIf="currentUser.role === 'GAME ADMIN'" (click)="gamePatternSubListAction()">
+          <mat-icon class="list-btn-icon">layers</mat-icon>
+          Шаблоны игр
+        </button>
+        <mat-action-list class="sub-list" *ngIf="gamePatternSubList">
+          <button mat-list-item class="list-btn" routerLink="/board-games/patterns">
+            <mat-icon class="list-btn-icon">list</mat-icon>
+            Посмотреть все
+          </button>
+          <button mat-list-item class="list-btn" (click)="addGamePattern()">
+            <mat-icon class="list-btn-icon">add_box</mat-icon>
+            Добавить шаблон игры
+          </button>
+          <button mat-list-item class="list-btn" (click)="copyGamePattern()">
+            <mat-icon class="list-btn-icon">file_copy</mat-icon>
+            Скопировать шаблон игры
+          </button>
+        </mat-action-list>
+        <button mat-list-item class="list-btn" routerLink="/board-games/profile">
+          <mat-icon class="list-btn-icon">account_circle</mat-icon>
+          Профиль
+        </button>
+        <button mat-list-item class="list-btn" routerLink="/board-games/subscription">
+          <mat-icon class="list-btn-icon">playlist_add_check</mat-icon>
+          Подписка
+        </button>
+        <button mat-list-item class="list-btn" routerLink="/board-games/help">
+          <mat-icon class="list-btn-icon">live_help</mat-icon>
+          Помощь
+        </button>
+        <button mat-list-item class="list-btn" routerLink="/board-games/conversations">
+          <mat-icon class="list-btn-icon">forum</mat-icon>
+          Сообщения
+        </button>
+      </mat-action-list>
+      <mat-action-list id="exit-btn">
+        <button mat-list-item class="list-btn" (click)="signout()">
+          <mat-icon class="list-btn-icon">exit_to_app</mat-icon>
+          Выйти
+        </button>
+      </mat-action-list>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-container>
+</div>

@@ -1,0 +1,50 @@
+.game-window-container {
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 800px;
+  max-height: 800px;
+  border: 1px solid gray;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .chip {
+    height: 50px;
+    width: 25px;
+  }
+
+  .deck {
+    height: 100px;
+    width: 50px;
+    position: relative;
+    left: 0;
+    top: 300px;
+  }
+
+  .card {
+    height: 100px;
+    width: 50px;
+    border: 1px solid gray;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.members {
+  display: flex;
+  flex-direction: row;
+
+  .member {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+}
+
+#zmmtg-root {
+  display: block;
+}

@@ -1,0 +1,63 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "nodejs test server",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "npx ts-node-dev src/app.ts",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mremil6/nodejs.git"
+  },
+  "author": "e.abilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mremil6/nodejs/issues"
+  },
+  "homepage": "https://github.com/mremil6/nodejs#readme",
+  "dependencies": {
+    "@types/node": "^12.7.8",
+    "@zoomus/websdk": "^1.7.9",
+    "aws-sdk": "^2.596.0",
+    "axios": "^0.19.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "connect-multiparty": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "gmail-send": "^1.8.10",
+    "imagemin": "^7.0.1",
+    "imagemin-jpeg-recompress": "^6.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.4",
+    "multer": "^1.4.2",
+    "node-schedule": "^1.3.2",
+    "nodemailer": "^6.4.2",
+    "nodemon": "^1.19.2",
+    "npx": "^10.2.0",
+    "pusher": "^3.0.0",
+    "sjcl": "^1.0.8",
+    "socket.io": "^2.3.0",
+    "ts-node": "^8.5.4",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tslint": "^5.20.0",
+    "typescript": "^3.7.4",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/bcrypt-nodejs": "0.0.30",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.1",
+    "@types/jsonwebtoken": "^8.3.4",
+    "@types/mongodb": "^3.3.6",
+    "@types/mongoose": "^5.5.20",
+    "@types/sjcl": "^1.0.28",
+    "@types/uuid": "^3.4.5"
+  }
+}

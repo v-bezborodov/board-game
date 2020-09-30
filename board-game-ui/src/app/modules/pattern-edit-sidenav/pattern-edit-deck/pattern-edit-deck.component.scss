@@ -1,0 +1,333 @@
+@import "~src/style-constants";
+
+.container {
+  min-width: 280px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 0;
+  padding-left: 0;
+
+  .decks {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .decks-list {
+      padding: 0;
+
+      .decks-list-item {
+        cursor: pointer;
+
+        .decks-list-btn {
+          position: absolute;
+          right: 0;
+        }
+
+      }
+      .decks-list-item:hover {
+        background: $color-opacity;
+      }
+
+    }
+
+  }
+
+  .decks-form {
+    width: 55%;
+    border-right: 2px solid #1b9490;
+    border-left: 2px solid #1b9490;
+    box-sizing: border-box;
+    padding: 10px;
+
+    .form {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+
+      .upload-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .uploaded-file {
+          position: relative;
+          width: 200px;
+          height: 200px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          cursor: pointer;
+          border: 2px dashed black;
+          box-sizing: border-box;
+          z-index: 9999;
+
+          img {
+            width: 100% !important;
+            object-fit: scale-down;
+          }
+
+          iframe {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: none;
+            z-index: 1;
+          }
+
+          .action-window {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+          }
+
+        }
+
+      }
+
+      .upload-btn {
+        width: 200px;
+        height: 200px;
+        border: 2px dashed black;
+        background: none;
+        font-size: 16px;
+        font-family: OpenSans, sans-serif;
+        outline: none;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      img {
+        max-width: 100px;
+        object-fit: scale-down;
+      }
+
+      .upload-file-label {
+        margin: 10px 0 5px 0 ;
+        font-size: 16px;
+        font-family: OpenSans, sans-serif;
+      }
+
+    }
+
+  }
+
+  .card-properties {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 10px;
+
+    .card-textarea {
+      width: 100%;
+    }
+
+    .properties-list {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .limit-select-field {
+        width: 50px;
+        text-align: center;
+      }
+
+      .limit-input-field {
+        width: 100px;
+        text-align: center;
+      }
+
+    }
+
+  }
+
+}
+
+.title {
+  font-family: OpenSans, sans-serif;
+  color: #1b9490;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: OpenSans, sans-serif;
+  color: #1b9490;
+  text-align: center;
+}
+
+@media (max-width: 1190px) {
+
+  .container {
+    padding-right: 0;
+    padding-left: 0;
+
+    .decks {
+      width: 35%;
+    }
+
+    .decks-form {
+      width: 65%;
+      border-right: none;
+    }
+
+    .card-properties {
+      width: 35%;
+    }
+
+  }
+
+}
+
+@media (max-width: 1075px) {
+
+  .container {
+
+    .decks {
+      width: 40%;
+    }
+
+    .decks-form {
+      width: 60%;
+      border-right: none;
+    }
+
+    .card-properties {
+      width: 40%;
+
+      .properties-list {
+
+        .limit-input-field {
+          width: 80px;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: 915px) {
+
+  .container {
+
+    .decks {
+      width: 100%;
+    }
+
+    .decks-form {
+      width: 100%;
+      border-right: none;
+      border-left: none;
+      border-top: 2px solid #1b9490;
+      border-bottom: 2px solid #1b9490;
+
+      .form {
+        width: 100%;
+      }
+
+    }
+
+    .card-properties {
+      width: 60%;
+      margin: 0 auto;
+
+      .properties-list {
+
+        .limit-input-field {
+          width: 100px;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: 530px) {
+
+  .container {
+
+    .card-properties {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+  }
+
+}
+
+@media (max-width: 410px) {
+
+  .container {
+
+    .card-properties {
+      width: 100%;
+      margin: 0 auto;
+
+      .properties-list {
+
+        .limit-input-field {
+          width: 80px;
+          text-align: center;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+//@media (max-width: 400px) {
+//
+//  .container {
+//
+//    .decks {
+//      width: 100%;
+//    }
+//
+//    .decks-form {
+//      width: 100%;
+//      border-right: none;
+//      border-left: none;
+//      border-top: 2px solid #1b9490;
+//      border-bottom: 2px solid #1b9490;
+//
+//      .form {
+//        width: 100%;
+//      }
+//
+//    }
+//
+//    .card-properties {
+//      width: 80%;
+//      margin: 0 auto;
+//
+//      .properties-list {
+//
+//        .limit-input-field {
+//          width: 100px;
+//          text-align: center;
+//        }
+//
+//      }
+//
+//    }
+//
+//  }
+//}

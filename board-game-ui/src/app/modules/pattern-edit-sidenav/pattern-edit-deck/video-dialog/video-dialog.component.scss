@@ -1,0 +1,17 @@
+@import "~src/style-constants";
+
+.title {
+  font-size: 28px;
+  color: $header-color;
+  border-bottom: 1px solid $header-color;
+  font-family: OpenSans-Bold, sans-serif;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: row-reverse;
+}
